@@ -25,6 +25,9 @@ public class Main {
                 g2d.setColor(Color.GREEN);
                 g2d.drawLine(i,0,i,window.getHeight()-1);
 
+                // Draw surrounding square
+                g2d.setColor(Color.RED);
+                g2d.drawRect(0, 0, 599, 399);
                 
                 // Dispose graphics content
                 g2d.dispose();
