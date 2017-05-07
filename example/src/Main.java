@@ -36,6 +36,11 @@ public class Main {
             // Show (= pageflip)
             window.display();
             
+            // TEST resizing capability
+            if(i == window.getWidth() - 1 && window.getWidth() == 600){
+                window.resize(800,600);
+            }
+
             // Update function
             {
                 // Move line

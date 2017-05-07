@@ -103,7 +103,7 @@ public class DrawingWindow {
 					
 					// Display
 					window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	                window.setLocationRelativeTo(null);
+					window.setLocationRelativeTo(null);
 					window.setVisible(true);
 
 				};
@@ -140,6 +140,7 @@ public class DrawingWindow {
 	public void display(){
 		if(graphComponent.displayRenderBuffer(renderBuffer)){
 			window.pack();
+			window.setLocationRelativeTo(null);
 		}		
 		graphComponent.repaint();
 	}
