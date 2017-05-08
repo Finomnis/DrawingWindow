@@ -90,6 +90,10 @@ public class DrawingWindow {
 	private BufferedImage renderBuffer;
 	
 	public DrawingWindow(String name, int width, int height){
+	    this(name, width, height, 1);
+	}
+	    
+	public DrawingWindow(String name, int width, int height, int pixelSize){
 		
 		renderBuffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		
@@ -102,6 +106,7 @@ public class DrawingWindow {
 					
 					// Create Graph
 					graphComponent = new GraphComponent();
+					graphComponent.setPixelSize(pixelSize);
 					graphComponent.displayRenderBuffer(renderBuffer);
 					window.add(graphComponent,BorderLayout.CENTER);
 					
@@ -175,5 +180,6 @@ public class DrawingWindow {
 	
 	public void setPixelSize(int size){
 	    graphComponent.setPixelSize(size);
+	    display();
 	}
 }
