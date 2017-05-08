@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -21,6 +22,7 @@ public class DrawingWindow {
 		public GraphComponent(){
 			this.width = 200;
 			this.height = 200;
+			this.pixelSize = 1;
 		}
 		
 		
@@ -31,6 +33,7 @@ public class DrawingWindow {
 		}
 		
 		private int width, height;
+		private int pixelSize;
 		
 		private static final long serialVersionUID = 1L;
 		
@@ -55,14 +58,14 @@ public class DrawingWindow {
 			l.lock();
 			try{
 				if(internalRenderBuffer == null){
-					internalRenderBuffer = new BufferedImage(buffer.getWidth(), buffer.getHeight(), BufferedImage.TYPE_INT_RGB);
+					internalRenderBuffer = new BufferedImage(buffer.getWidth() * pixelSize, buffer.getHeight() * pixelSize, BufferedImage.TYPE_INT_RGB);
 				} else {
-					if(internalRenderBuffer.getHeight() != buffer.getHeight() || internalRenderBuffer.getWidth() != buffer.getWidth()){
-						internalRenderBuffer = new BufferedImage(buffer.getWidth(), buffer.getHeight(), BufferedImage.TYPE_INT_RGB);
+					if(internalRenderBuffer.getHeight() != buffer.getHeight() * pixelSize || internalRenderBuffer.getWidth() != buffer.getWidth() * pixelSize){
+						internalRenderBuffer = new BufferedImage(buffer.getWidth() * pixelSize, buffer.getHeight() * pixelSize, BufferedImage.TYPE_INT_RGB);
 					}
 				}
-				Graphics g = internalRenderBuffer.getGraphics();
-				g.drawImage(buffer, 0, 0, null);
+				Graphics2D g = internalRenderBuffer.createGraphics();
+				g.drawRenderedImage(buffer, AffineTransform.getScaleInstance(pixelSize, pixelSize));
 				g.dispose();
 				if(width != internalRenderBuffer.getWidth() || height != internalRenderBuffer.getHeight()){
 					this.width = internalRenderBuffer.getWidth();
@@ -73,6 +76,10 @@ public class DrawingWindow {
 				l.unlock();
 			}
 			return needsPack;
+		}
+	
+		public void setPixelSize(int size){
+		    this.pixelSize = size;
 		}
 		
 	}
@@ -164,5 +171,9 @@ public class DrawingWindow {
 	
 	public void removeMouseMotionListener(MouseMotionListener listener){
 	    graphComponent.removeMouseMotionListener(listener);
+	}
+	
+	public void setPixelSize(int size){
+	    graphComponent.setPixelSize(size);
 	}
 }

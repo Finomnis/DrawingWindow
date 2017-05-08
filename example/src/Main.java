@@ -8,7 +8,8 @@ public class Main {
     public static void main(String[] args) {
         
         // Create window
-        DrawingWindow window = new DrawingWindow("Example Window", 600, 400);
+        DrawingWindow window = new DrawingWindow("Example Window", 400, 300);
+        window.setPixelSize(2);
         
         int i = 0;
         while(true){
@@ -27,7 +28,7 @@ public class Main {
 
                 // Draw surrounding square
                 g2d.setColor(Color.RED);
-                g2d.drawRect(0, 0, 599, 399);
+                g2d.drawRect(0, 0, 399, 299);
                 
                 // Dispose graphics content
                 g2d.dispose();
@@ -37,8 +38,8 @@ public class Main {
             window.display();
             
             // TEST resizing capability
-            if(i == window.getWidth() - 1 && window.getWidth() == 600){
-                window.resize(800,600);
+            if(i == window.getWidth() - 1 && window.getWidth() == 400){
+                window.resize(600,400);
             }
 
             // Update function

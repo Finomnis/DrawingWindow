@@ -3,11 +3,12 @@
 SCRIPTPATH=$( cd $(dirname $0) ; pwd -P )
 BUILDPATH=${SCRIPTPATH}/build
 
+set -e
 set -o xtrace
 
-rm -rf ${BUILDPATH}
-mkdir -p ${BUILDPATH}
+rm -rf "${BUILDPATH}"
+mkdir -p "${BUILDPATH}"
 
-javac src/DrawingWindow.java -d ${BUILDPATH}
+javac "${SCRIPTPATH}/src/DrawingWindow.java" -d "${BUILDPATH}"
 
-jar cf DrawingWindow.jar -C ${BUILDPATH} org
+jar cf "${SCRIPTPATH}/DrawingWindow.jar" -C "${BUILDPATH}" org
