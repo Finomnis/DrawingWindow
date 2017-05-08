@@ -1,4 +1,4 @@
-package org.finomnis.common;
+package org.finomnis.common.graphics;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
