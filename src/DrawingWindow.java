@@ -130,6 +130,10 @@ public class DrawingWindow {
 		return renderBuffer.createGraphics();
 	}
 	
+	public void setRGB(int x, int y, int rgb){
+	    renderBuffer.setRGB(x,y,rgb);
+	}
+	
 	public void clear(){
 		Graphics2D g = renderBuffer.createGraphics();
 		g.setColor(Color.BLACK);

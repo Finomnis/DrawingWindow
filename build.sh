@@ -14,4 +14,6 @@ javac "${SCRIPTPATH}/src/DrawingWindow.java" \
       "${SCRIPTPATH}/src/ColorMap.java" \
       -d "${BUILDPATH}"
 
+#jar cf "${SCRIPTPATH}/DrawingWindow.jar" -C "${BUILDPATH}" org
+cp ${SCRIPTPATH}/src/* ${BUILDPATH}/org/finomnis/common/graphics/
 jar cf "${SCRIPTPATH}/DrawingWindow.jar" -C "${BUILDPATH}" org

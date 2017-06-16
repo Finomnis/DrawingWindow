@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-import org.finomnis.common.DrawingWindow;
+import org.finomnis.common.graphics.DrawingWindow;
 
 public class Main {
 
